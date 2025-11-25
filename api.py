@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Simple FastAPI Backend - High-End Editorial Edition
+Simple FastAPI Backend - High-End Editorial Demo
 ===================================================
 REST API for generating GQ/Fortune style advertisements.
 Fixes: 'Floating Product' bugs and 'Cartoonish' text placements.
