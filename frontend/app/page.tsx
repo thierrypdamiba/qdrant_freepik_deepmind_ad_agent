@@ -81,7 +81,8 @@ export default function Home() {
     const startTime = Date.now()
 
     try {
-      const response = await fetch('http://localhost:8001/api/create-ad', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8001'
+      const response = await fetch(`${apiUrl}/api/create-ad`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -314,7 +315,7 @@ export default function Home() {
       const errorMessage = error instanceof Error ? error.message : String(error)
       setMessages(prev => [...prev, {
         author: 'system',
-        text: `Error: ${errorMessage}\n\nMake sure the backend API is running on http://localhost:8001`,
+        text: `Error: ${errorMessage}\n\nMake sure the backend API is running`,
         type: 'error',
         timestamp: Date.now(),
         latency: 0
@@ -342,7 +343,8 @@ export default function Home() {
 
   const fetchHistory = async () => {
     try {
-      const res = await fetch('http://localhost:8001/api/history')
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8001'
+      const res = await fetch(`${apiUrl}/api/history`)
       if (res.ok) {
         const data = await res.json()
         setHistoryItems(data)
@@ -357,7 +359,8 @@ export default function Home() {
     try {
       setLoading(true)
       setShowHistory(false)
-      const res = await fetch(`http://localhost:8001/api/history/${filename}`)
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8001'
+      const res = await fetch(`${apiUrl}/api/history/${filename}`)
       if (res.ok) {
         const data = await res.json()
         setQuery(data.query)
